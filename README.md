@@ -1,6 +1,6 @@
 # QuizGame
 
-Um jogo de perguntas e respostas educacional com múltiplas funcionalidades.
+Um jogo de perguntas e respostas educacional.
 
 ## Funcionalidades
 
@@ -38,6 +38,7 @@ Um jogo de perguntas e respostas educacional com múltiplas funcionalidades.
 - CSS3 (com variáveis para temas)
 - JavaScript (ES6+)
 - LocalStorage para persistência de dados
+- Google Sheets para o banco de user
 
 ## Personalização
 
@@ -55,4 +56,5 @@ Edite os arquivos JSON na pasta `data/` seguindo o formato:
   "opcao_d": "Opção 4",
   "opcao_e": "Opção 5",
   "resposta": "2"
+
 }
