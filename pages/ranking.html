@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizGame - Ranking</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+                <h1>QuizGame</h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme">🌙 Modo Escuro</button>
+                <button onclick="logoutUser()" class="btn-logout">🚪 Sair</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="ranking-section">
+            <div class="section-header">
+                <h2>🏆 Ranking Global</h2>
+                <p>Dados em tempo real do Google Sheets</p>
+            </div>
+            
+            <div class="ranking-info">
+                <p id="rankingSource">📊 Fonte: Google Sheets</p>
+                <p id="lastUpdate">🕒 Última atualização: <span id="updateTime">Carregando...</span></p>
+            </div>
+
+            <div class="sheet-info" id="sheetInfo">
+                <h4>📊 Status da Planilha</h4>
+                <div class="sheet-status">
+                    <p><strong>📶 Status:</strong> <span id="sheetStatus">Conectando...</span></p>
+                    <p><strong>👥 Jogadores:</strong> <span id="sheetRecords">0</span></p>
+                </div>
+            </div>
+            
+            <div id="rankingList" class="ranking-list">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Carregando ranking do Google Sheets...</p>
+                </div>
+            </div>
+            
+            <div class="ranking-actions">
+                <button class="btn-secondary" onclick="window.location.href='../index.html'">🏠 Voltar ao Início</button>
+                <button class="btn-secondary" onclick="window.location.href='game.html'">🎯 Jogar</button>
+                <button id="refreshRanking" class="btn-primary">🔄 Atualizar Ranking</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="../js/ranking.js"></script>
+    <script src="../js/google-sheets.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+        // Atualizar informações da planilha
+        function updateSheetInfo(status) {
+            document.getElementById('sheetId').textContent = status.sheetId || 'N/A';
+            document.getElementById('sheetStatus').textContent = status.connected ? '✅ Conectado' : '❌ Erro';
+            document.getElementById('sheetRecords').textContent = status.dataCount || 0;
+            
+            if (!status.connected) {
+                document.getElementById('sheetStatus').innerHTML = `❌ ${status.error}`;
+            }
+        }
+
+        // Atualizar ranking
+        function refreshRanking() {
+            loadSheetsRanking();
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+            
+            // Atualizar status da planilha também
+            checkSheetStatus().then(updateSheetInfo);
+        }
+        
+        // Quando a página carregar
+        window.addEventListener('load', () => {
+            // Verificar autenticação
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Carregar ranking do Google Sheets automaticamente
+            loadSheetsRanking();
+            initializeGoogleSheets();
+            
+            // Verificar status da planilha
+            checkSheetStatus().then(updateSheetInfo);
+            
+            // Atualizar timestamp
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+        });
+
+        // Configurar botão de atualizar
+        document.getElementById('refreshRanking').addEventListener('click', refreshRanking);
+    </script>
+
+    <style>
+        .ranking-controls {
+            display: none; /* Esconder os botões de alternância */
+        }
+        
+        .sheet-info {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .sheet-info h4 {
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+        }
+        
+        .sheet-status {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .sheet-status p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ranking-info {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .ranking-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .ranking-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

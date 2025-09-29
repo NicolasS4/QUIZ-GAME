@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizGame - Ajuda</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+                <h1>QuizGame - Ajuda</h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme">🌙 Modo Escuro</button>
+                <button onclick="logoutUser()" class="btn-logout">🚪 Sair</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="help-section">
+            <div class="section-header">
+                <h2>❓ Central de Ajuda</h2>
+                <p>Tire suas dúvidas sobre o QuizGame</p>
+            </div>
+            
+            <div class="help-content">
+                <div class="help-categories">
+                    <div class="category-card" onclick="showCategory('gameplay')">
+                        <div class="category-icon">🎮</div>
+                        <h3>Como Jogar</h3>
+                        <p>Aprenda as regras do jogo</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('account')">
+                        <div class="category-icon">👤</div>
+                        <h3>Conta & Login</h3>
+                        <p>Problemas com sua conta</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('technical')">
+                        <div class="category-icon">🔧</div>
+                        <h3>Problemas Técnicos</h3>
+                        <p>Problemas com o jogo</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('ranking')">
+                        <div class="category-icon">🏆</div>
+                        <h3>Sistema de Ranking</h3>
+                        <p>Entenda como funciona</p>
+                    </div>
+                </div>
+                
+                <div class="faq-content" id="faqContent">
+                    <div class="faq-welcome">
+                        <h3>👋 Bem-vindo à Central de Ajuda!</h3>
+                        <p>Selecione uma categoria acima para ver as perguntas frequentes.</p>
+                    </div>
+                    
+                    <!-- Conteúdo de Como Jogar -->
+                    <div class="faq-category" id="category-gameplay" style="display: none;">
+                        <h3>🎮 Como Jogar</h3>
+                        <div class="faq-item">
+                            <h4>Como funciona o jogo?</h4>
+                            <p>O QuizGame é um jogo de perguntas e respostas onde você testa seus conhecimentos em diversas áreas. Cada pergunta tem 5 alternativas e você ganha pontos por respostas corretas.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Quais são os modos de jogo?</h4>
+                            <p><strong>Modo Único:</strong> Jogue apenas uma matéria específica<br>
+                            <strong>Modo Misto:</strong> Perguntas de todas as matérias<br>
+                            <strong>Modo Personalizado:</strong> Escolha quais matérias incluir</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Como ganhar pontos?</h4>
+                            <p>Você ganha pontos por:<br>
+                            • Resposta correta: 10 pontos base<br>
+                            • Bônus por tempo: até 10 pontos extras<br>
+                            • Bônus por sequência: 2 pontos por acerto consecutivo</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo de Conta & Login -->
+                    <div class="faq-category" id="category-account" style="display: none;">
+                        <h3>👤 Conta & Login</h3>
+                        <div class="faq-item">
+                            <h4>Como criar uma conta?</h4>
+                            <p>Clique em "Fazer Login" na página inicial e depois em "Criar uma conta". Você precisará escolher um nome de usuário e senha.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Esqueci minha senha, o que fazer?</h4>
+                            <p>Entre em contato com o suporte para redefinir sua senha. No momento, não temos sistema de recuperação automática.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Posso trocar meu nome de usuário?</h4>
+                            <p>No momento, não é possível alterar o nome de usuário após a criação da conta. Escolha com cuidado!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo de Problemas Técnicos -->
+                    <div class="faq-category" id="category-technical" style="display: none;">
+                        <h3>🔧 Problemas Técnicos</h3>
+                        <div class="faq-item">
+                            <h4>O jogo está travando, o que fazer?</h4>
+                            <p>• Atualize a página (F5)<br>
+                            • Limpe o cache do navegador<br>
+                            • Verifique sua conexão com a internet</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>As perguntas não carregam</h4>
+                            <p>Isso pode ser causado por:<br>
+                            • Problemas de conexão<br>
+                            • Bloqueador de anúncios<br>
+                            • Cache corrompido</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Como reportar um bug?</h4>
+                            <p>Entre em contato com nossa equipe de suporte descrevendo o problema encontrado.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo de Ranking -->
+                    <div class="faq-category" id="category-ranking" style="display: none;">
+                        <h3>🏆 Sistema de Ranking</h3>
+                        <div class="faq-item">
+                            <h4>Como funciona o ranking?</h4>
+                            <p>O ranking é baseado na pontuação total dos jogadores. Quanto mais você joga e acerta, maior sua posição no ranking.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>O ranking é atualizado em tempo real?</h4>
+                            <p>Sim! Sua pontuação é atualizada automaticamente após cada partida.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Posso ver o ranking global?</h4>
+                            <p>Sim! Acesse a página "Ver Ranking" para ver todos os jogadores.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="help-actions">
+                <button onclick="window.location.href='../index.html'" class="btn-secondary">🏠 Voltar ao Início</button>
+                <button onclick="window.location.href='game.html'" class="btn-primary">🎯 Voltar ao Jogo</button>
+                <button onclick="contactSupport()" class="btn-secondary">📞 Contatar Suporte</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="../js/utils.js"></script>
+    <script>
+        // Verificar autenticação
+        window.addEventListener('load', function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Aplicar tema
+            if (typeof applySavedTheme === 'function') {
+                applySavedTheme();
+            }
+        });
+
+        function showCategory(category) {
+            // Esconde todas as categorias
+            document.querySelectorAll('.faq-category').forEach(cat => {
+                cat.style.display = 'none';
+            });
+            
+            // Esconde a mensagem de boas-vindas
+            document.querySelector('.faq-welcome').style.display = 'none';
+            
+            // Mostra a categoria selecionada
+            document.getElementById('category-' + category).style.display = 'block';
+            
+            // Atualiza os cards ativos
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        function contactSupport() {
+            alert('📞 Entre em contato com nosso suporte:\n\nEmail: suporte@quizgame.com\n\nResponderemos em até 24 horas!');
+        }
+
+        // Adicionar CSS para as categorias
+        const style = document.createElement('style');
+        style.textContent = `
+            .help-categories {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            
+            .category-card {
+                background: var(--bg-card);
+                padding: 2rem;
+                border-radius: var(--border-radius-lg);
+                text-align: center;
+                cursor: pointer;
+                transition: var(--transition);
+                border: 2px solid var(--border-color);
+            }
+            
+            .category-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary-color);
+            }
+            
+            .category-card.active {
+                border-color: var(--primary-color);
+                background: var(--primary-color);
+                color: white;
+            }
+            
+            .category-card.active .category-icon {
+                transform: scale(1.1);
+            }
+            
+            .category-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                transition: var(--transition);
+            }
+            
+            .category-card h3 {
+                margin-bottom: 0.5rem;
+            }
+            
+            .faq-content {
+                background: var(--bg-card);
+                padding: 2rem;
+                border-radius: var(--border-radius-lg);
+                margin-bottom: 2rem;
+            }
+            
+            .faq-item {
+                margin-bottom: 2rem;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .faq-item:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            
+            .faq-item h4 {
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+            }
+            
+            .help-actions {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            @media (max-width: 768px) {
+                .help-categories {
+                    grid-template-columns: 1fr;
+                }
+                
+                .help-actions {
+                    flex-direction: column;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

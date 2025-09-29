@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizGame - Jogo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+                <h1>QuizGame</h1>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Jogador:</span>
+                    <span id="playerName" class="stat-value">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Pontuação:</span>
+                    <span id="score" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Sequência:</span>
+                    <span id="streak" class="stat-value">0</span>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme">🌙 Modo Escuro</button>
+                <button onclick="logoutUser()" class="btn-logout">🚪 Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Tela de Seleção de Modo -->
+        <div id="gameSelection" class="game-section active">
+            <div class="section-header">
+                <h2>🎮 Selecione o Modo de Jogo</h2>
+                <p>Escolha como você quer jogar</p>
+            </div>
+            
+            <div class="game-modes">
+                <div class="mode-card">
+                    <div class="mode-icon">🎯</div>
+                    <h3>Modo Único</h3>
+                    <p>Jogue apenas uma matéria específica</p>
+                    <div class="mode-selector">
+                        <select id="singleSubject">
+                            <option value="programacao">💻 Programação</option>
+                            <option value="matematica">📐 Matemática</option>
+                            <option value="biologia">🔬 Biologia</option>
+                            <option value="portugues">📚 Português</option>
+                            <option value="historia">📜 História</option>
+                            <option value="outras">🎭 Outras</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="startGame('single')">🎯 Iniciar Jogo</button>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-icon">🎲</div>
+                    <h3>Modo Misto</h3>
+                    <p>Perguntas de todas as matérias</p>
+                    <button class="btn-primary" onclick="startGame('mixed')">🎲 Iniciar Jogo</button>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-icon">⚙️</div>
+                    <h3>Modo Personalizado</h3>
+                    <p>Escolha quais matérias incluir</p>
+                    <div class="custom-subjects">
+                        <label><input type="checkbox" name="subject" value="programacao" checked> 💻 Programação</label>
+                        <label><input type="checkbox" name="subject" value="matematica" checked> 📐 Matemática</label>
+                        <label><input type="checkbox" name="subject" value="biologia" checked> 🔬 Biologia</label>
+                        <label><input type="checkbox" name="subject" value="portugues" checked> 📚 Português</label>
+                        <label><input type="checkbox" name="subject" value="historia" checked> 📜 História</label>
+                        <label><input type="checkbox" name="subject" value="outras" checked> 🎭 Outras</label>
+                    </div>
+                    <button class="btn-primary" onclick="startGame('custom')">⚙️ Iniciar Jogo</button>
+                </div>
+            </div>
+
+            <!-- Configurações do Desafio -->
+            <div class="game-settings">
+                <h3>⚙️ Configurações do Desafio</h3>
+                
+                <div class="setting-group">
+                    <label for="timeLimit">⏱️ Tempo Limite:</label>
+                    <select id="timeLimit">
+                        <option value="90">90 segundos</option>
+                        <option value="120">120 segundos</option>
+                        <option value="180">180 segundos</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="questionCount">📝 Quantidade de Questões:</label>
+                    <select id="questionCount">
+                        <option value="5">5 questões</option>
+                        <option value="10" selected>10 questões</option>
+                        <option value="15">15 questões</option>
+                        <option value="20">20 questões</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="game-actions">
+                <button onclick="window.location.href='../index.html'" class="btn-secondary">🏠 Voltar ao Início</button>
+                <button onclick="window.location.href='ranking.html'" class="btn-secondary">🏆 Ver Ranking</button>
+                <button onclick="window.location.href='helpers.html'" class="btn-secondary">❓ Ajuda</button>
+            </div>
+        </div>
+        
+        <!-- Área do Jogo -->
+        <div id="gameArea" class="game-section">
+            <div class="question-header">
+                <div class="question-info">
+                    <span id="questionNumber" class="question-counter">Pergunta 1/10</span>
+                    <span id="timeLeft" class="timer">⏱️ 01:30</span>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-content">
+                    <h3 id="questionText">Carregando pergunta...</h3>
+                </div>
+                
+                <div class="options-grid">
+                    <button class="option-btn" data-option="a" onclick="selectAnswer('a')">
+                        <span class="option-letter">A</span>
+                        <span id="optionA" class="option-text">Carregando...</span>
+                    </button>
+                    <button class="option-btn" data-option="b" onclick="selectAnswer('b')">
+                        <span class="option-letter">B</span>
+                        <span id="optionB" class="option-text">Carregando...</span>
+                    </button>
+                    <button class="option-btn" data-option="c" onclick="selectAnswer('c')">
+                        <span class="option-letter">C</span>
+                        <span id="optionC" class="option-text">Carregando...</span>
+                    </button>
+                    <button class="option-btn" data-option="d" onclick="selectAnswer('d')">
+                        <span class="option-letter">D</span>
+                        <span id="optionD" class="option-text">Carregando...</span>
+                    </button>
+                    <button class="option-btn" data-option="e" onclick="selectAnswer('e')">
+                        <span class="option-letter">E</span>
+                        <span id="optionE" class="option-text">Carregando...</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button id="nextBtn" class="btn-next" onclick="nextQuestion()" disabled>⏭️ Próxima Pergunta</button>
+                <button onclick="quitGame()" class="btn-quit">🚪 Sair do Jogo</button>
+            </div>
+        </div>
+        
+        <!-- Tela de Resultados -->
+        <div id="results" class="game-section">
+            <div class="section-header">
+                <h2>🎊 Resultado Final</h2>
+                <p>Confira seu desempenho</p>
+            </div>
+            
+            <div class="result-card">
+                <div class="result-item">
+                    <span class="result-label">Pontuação Total:</span>
+                    <span id="finalScore" class="result-value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Acertos:</span>
+                    <span id="correctAnswers" class="result-value">0</span>
+                    <span class="result-divider">/</span>
+                    <span id="totalQuestions" class="result-value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Maior Sequência:</span>
+                    <span id="maxStreak" class="result-value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tempo Total:</span>
+                    <span id="totalTime" class="result-value">0s</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tempo Restante:</span>
+                    <span id="timeRemaining" class="result-value">0s</span>
+                </div>
+            </div>
+            
+            <div class="result-actions">
+                <button onclick="playAgain()" class="btn-primary">🔄 Jogar Novamente</button>
+                <button onclick="goHome()" class="btn-secondary">🏠 Voltar ao Início</button>
+                <button onclick="viewRanking()" class="btn-secondary">🏆 Ver Ranking</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+    
+    <!-- IMPORTANTE: Google Sheets DEVE vir antes do game.js -->
+    <script src="../js/google-sheets.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Verificar se o usuário está logado
+        window.addEventListener('load', function() {
+            console.log('Game page loaded');
+            
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                alert('⚠️ Você precisa estar logado para jogar!');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            document.getElementById('playerName').textContent = user.username;
+            console.log('Usuário logado:', user.username);
+            
+            // Aplicar tema salvo
+            if (typeof applySavedTheme === 'function') {
+                applySavedTheme();
+            }
+            
+            // Inicializar Google Sheets
+            if (typeof initializeGoogleSheets === 'function') {
+                initializeGoogleSheets();
+            }
+        });
+
+        function viewRanking() {
+            window.location.href = 'ranking.html';
+        }
+        
+        function quitGame() {
+            if (confirm('Tem certeza que deseja sair? Seu progresso será perdido.')) {
+                window.location.href = '../index.html';
+            }
+        }
+        
+        function goHome() {
+            window.location.href = '../index.html';
+        }
+
+        // Adicionar CSS para as configurações
+        const style = document.createElement('style');
+        style.textContent = `
+            .game-settings {
+                background: var(--bg-card);
+                padding: 2rem;
+                border-radius: var(--border-radius-lg);
+                margin: 2rem auto;
+                max-width: 600px;
+                border: 1px solid var(--border-color);
+            }
+            
+            .game-settings h3 {
+                text-align: center;
+                margin-bottom: 1.5rem;
+                color: var(--text-primary);
+            }
+            
+            .setting-group {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+                padding: 1rem;
+                background: var(--bg-secondary);
+                border-radius: var(--border-radius);
+            }
+            
+            .setting-group label {
+                font-weight: 600;
+                color: var(--text-primary);
+                font-size: 1rem;
+            }
+            
+            .setting-group select {
+                padding: 0.75rem;
+                border: 2px solid var(--border-color);
+                border-radius: var(--border-radius);
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                font-size: 1rem;
+                min-width: 150px;
+            }
+            
+            .setting-group select:focus {
+                outline: none;
+                border-color: var(--primary-color);
+            }
+            
+            @media (max-width: 768px) {
+                .setting-group {
+                    flex-direction: column;
+                    gap: 1rem;
+                    align-items: flex-start;
+                }
+                
+                .setting-group select {
+                    width: 100%;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

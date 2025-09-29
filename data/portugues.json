@@ -1,0 +1,167 @@
+[
+  {
+    "id": "por0001",
+    "pergunta": "Qual é o plural da palavra 'cão'?",
+    "opcao_1": "cães",
+    "opcao_2": "cãos",
+    "opcao_3": "cãez",
+    "opcao_4": "cões",
+    "opcao_5": "cãis",
+    "resposta": "1",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "por0002",
+    "pergunta": "Qual destas palavras é um substantivo?",
+    "opcao_1": "correr",
+    "opcao_2": "bonito",
+    "opcao_3": "casa",
+    "opcao_4": "rapidamente",
+    "opcao_5": "e",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "por0003",
+    "pergunta": "Qual é o antônimo de 'alegre'?",
+    "opcao_1": "contente",
+    "opcao_2": "feliz",
+    "opcao_3": "triste",
+    "opcao_4": "animado",
+    "opcao_5": "jovial",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "por0004",
+    "pergunta": "Quantas sílabas tem a palavra 'biblioteca'?",
+    "opcao_1": "3",
+    "opcao_2": "4",
+    "opcao_3": "5",
+    "opcao_4": "6",
+    "opcao_5": "7",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "por0005",
+    "pergunta": "Qual destes é um verbo no infinitivo?",
+    "opcao_1": "cantando",
+    "opcao_2": "cantou",
+    "opcao_3": "cantar",
+    "opcao_4": "cante",
+    "opcao_5": "cantava",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "por0006",
+    "pergunta": "Qual é a classificação da palavra 'muito' na frase: 'Estou muito cansado'?",
+    "opcao_1": "Advérbio",
+    "opcao_2": "Adjetivo",
+    "opcao_3": "Substantivo",
+    "opcao_4": "Pronome",
+    "opcao_5": "Conjunção",
+    "resposta": "1",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "por0007",
+    "pergunta": "Qual destas palavras é oxítona?",
+    "opcao_1": "casa",
+    "opcao_2": "árvore",
+    "opcao_3": "papel",
+    "opcao_4": "máquina",
+    "opcao_5": "livro",
+    "resposta": "3",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "por0008",
+    "pergunta": "Qual é a figura de linguagem presente em 'O tempo é ouro'?",
+    "opcao_1": "Metáfora",
+    "opcao_2": "Comparação",
+    "opcao_3": "Hipérbole",
+    "opcao_4": "Personificação",
+    "opcao_5": "Ironia",
+    "resposta": "1",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "por0009",
+    "pergunta": "Qual destes é um pronome relativo?",
+    "opcao_1": "eu",
+    "opcao_2": "que",
+    "opcao_3": "este",
+    "opcao_4": "alguém",
+    "opcao_5": "todo",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "por0010",
+    "pergunta": "Qual é o sujeito da frase: 'Os alunos estudaram para a prova'?",
+    "opcao_1": "estudaram",
+    "opcao_2": "para a prova",
+    "opcao_3": "Os alunos",
+    "opcao_4": "Os alunos estudaram",
+    "opcao_5": "prova",
+    "resposta": "3",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "por0011",
+    "pergunta": "Qual destas orações está na voz passiva?",
+    "opcao_1": "O menino quebrou o vaso",
+    "opcao_2": "O vaso foi quebrado pelo menino",
+    "opcao_3": "O menino está quebrando o vaso",
+    "opcao_4": "Quebre o vaso, menino",
+    "opcao_5": "Se o menino quebrar o vaso",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "por0012",
+    "pergunta": "Qual é a função sintática de 'rapidamente' em: 'Ele correu rapidamente'?",
+    "opcao_1": "Adjunto adnominal",
+    "opcao_2": "Adjunto adverbial",
+    "opcao_3": "Complemento nominal",
+    "opcao_4": "Predicativo",
+    "opcao_5": "Aposto",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "por0013",
+    "pergunta": "Qual destes períodos é composto por subordinação?",
+    "opcao_1": "Estudei e fui bem na prova",
+    "opcao_2": "Quando cheguei, todos dormiam",
+    "opcao_3": "Ele chegou, cumprimentou a todos e sentou",
+    "opcao_4": "Choveu muito, porém fomos ao parque",
+    "opcao_5": "Acordei cedo, tomei café e saí",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "por0014",
+    "pergunta": "Qual é a regência verbal correta do verbo 'aspirar' no sentido de 'almejar'?",
+    "opcao_1": "aspirar a",
+    "opcao_2": "aspirar de",
+    "opcao_3": "aspirar por",
+    "opcao_4": "aspirar para",
+    "opcao_5": "aspirar com",
+    "resposta": "1",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "por0015",
+    "pergunta": "Qual destas construções apresenta pleonasmo?",
+    "opcao_1": "subir para cima",
+    "opcao_2": "descer escada",
+    "opcao_3": "entrar dentro",
+    "opcao_4": "sair fora",
+    "opcao_5": "todas as alternativas",
+    "resposta": "5",
+    "dificuldade": "dificil"
+  }
+]

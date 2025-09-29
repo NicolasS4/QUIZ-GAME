@@ -1,0 +1,15 @@
+{
+  "google_sheets": {
+    "sheet_id": "1MgEerxewyHEtj8ie7ojSAaECYmwHru7Cl2b6PuN_dIM",
+    "sheet_name": "Página1",
+    "app_script_url": "https://script.google.com/macros/s/AKfycbyrw597p7_YtPi7VGNrSiTTtMwYgddihMTgqUvPE0OtBPH096ICPuBGjKxwBm7wa82T/exec"
+  },
+  "security": {
+    "max_login_attempts": 5,
+    "login_timeout_minutes": 15
+  },
+  "game_settings": {
+    "question_time": 30,
+    "base_points": 10
+  }
+}

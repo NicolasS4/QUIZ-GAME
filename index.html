@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizGame - Início</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+                <h1>QuizGame</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme">🌙 Modo Escuro</button>
+                <span id="userWelcome"></span>
+                <button id="logoutBtn" class="btn-logout" style="display: none;">🚪 Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="welcome-section">
+            <h2 id="welcomeTitle">Bem-vindo ao QuizGame! 🎮</h2>
+            <p>Teste seus conhecimentos em diversas áreas do conhecimento</p>
+            
+            <div class="menu-options">
+                <button id="loginBtn" class="btn-primary">🚪 Fazer Login</button>
+                <button id="playBtn" class="btn-primary" style="display: none;">🎯 Jogar Agora</button>
+                <button id="rankingBtn" class="btn-secondary">🏆 Ver Ranking</button>
+                <button id="createRoomBtn" class="btn-secondary">👥 Criar Sala</button>
+                <button id="joinRoomBtn" class="btn-secondary">🔍 Entrar em Sala</button>
+                <button id="helpersBtn" class="btn-secondary">❓ Ajuda</button>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>+500 Perguntas</h3>
+                    <p>Diversas categorias e níveis de dificuldade</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Modo Rápido</h3>
+                    <p>Jogue partidas rápidas de 5 minutos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Multiplayer</h3>
+                    <p>Desafie seus amigos online</p>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h3>📊 Estatísticas em Tempo Real</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalUsers">📡</div>
+                        <div class="stat-label">Jogadores no Google Sheets</div>
+                        <div class="stat-loading" id="usersLoading">Carregando...</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalGames">🎯</div>
+                        <div class="stat-label">Partidas Jogadas</div>
+                        <div class="stat-loading" id="gamesLoading">Carregando...</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Perguntas Disponíveis</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="onlineUsers">👥</div>
+                        <div class="stat-label">Jogadores Online</div>
+                        <div class="stat-loading" id="onlineLoading">Calculando...</div>
+                    </div>
+                </div>
+                
+                <div class="sheets-info" id="sheetsInfo" style="display: none;">
+                    <h4>📊 Conectado ao Google Sheets</h4>
+                    <p style="color: white;">Dados carregados diretamente da planilha em tempo real</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/google-sheets.js"></script>
+    <script>
+        // Configurar botões - CORRIGIDO
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            console.log('Login button clicked');
+            window.location.href = 'pages/login.html';
+        });
+        
+        document.getElementById('playBtn').addEventListener('click', () => {
+            console.log('Play button clicked');
+            window.location.href = 'pages/game.html';
+        });
+        
+        document.getElementById('rankingBtn').addEventListener('click', () => {
+            console.log('Ranking button clicked');
+            window.location.href = 'pages/ranking.html';
+        });
+        
+        document.getElementById('createRoomBtn').addEventListener('click', () => {
+            console.log('Create room button clicked');
+            window.location.href = 'pages/room.html?action=create';
+        });
+        
+        document.getElementById('joinRoomBtn').addEventListener('click', () => {
+            console.log('Join room button clicked');
+            window.location.href = 'pages/room.html?action=join';
+        });
+        
+        document.getElementById('helpersBtn').addEventListener('click', () => {
+            console.log('Helpers button clicked');
+            window.location.href = 'pages/helpers.html';
+        });
+        
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            console.log('Logout button clicked');
+            if (typeof logoutUser === 'function') {
+                logoutUser();
+            } else {
+                // Fallback se a função não estiver disponível
+                localStorage.removeItem('currentUser');
+                window.location.reload();
+            }
+        });
+
+        // Verificar se há usuário logado e atualizar UI
+        function updateUIForUser() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const welcomeTitle = document.getElementById('welcomeTitle');
+            const userWelcome = document.getElementById('userWelcome');
+            const loginBtn = document.getElementById('loginBtn');
+            const playBtn = document.getElementById('playBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            if (user) {
+                // Usuário logado
+                welcomeTitle.textContent = `Bem-vindo de volta, ${user.username}! 🎮`;
+                userWelcome.textContent = `👋 Olá, ${user.username}`;
+                loginBtn.style.display = 'none';
+                playBtn.style.display = 'block';
+                logoutBtn.style.display = 'block';
+            } else {
+                // Usuário não logado
+                welcomeTitle.textContent = 'Bem-vindo ao QuizGame! 🎮';
+                userWelcome.textContent = '';
+                loginBtn.style.display = 'block';
+                playBtn.style.display = 'none';
+                logoutBtn.style.display = 'none';
+            }
+        }
+
+        // Carregar estatísticas REAIS do Google Sheets
+        async function loadRealStats() {
+            console.log('📊 Carregando estatísticas reais do Google Sheets...');
+            
+            try {
+                // Mostrar loading
+                document.getElementById('usersLoading').style.display = 'block';
+                document.getElementById('gamesLoading').style.display = 'block';
+                document.getElementById('onlineLoading').style.display = 'block';
+                
+                // Carregar dados da planilha
+                const sheetData = await fetchSheetData();
+                console.log('📈 Dados da planilha carregados:', sheetData);
+                
+                // Estatística 1: Total de usuários (baseado na coluna "Use")
+                const totalUsers = sheetData.filter(user => user.Use && user.Use.trim() !== '').length;
+                document.getElementById('totalUsers').textContent = totalUsers;
+                document.getElementById('totalUsers').className = 'stat-number loaded';
+                document.getElementById('usersLoading').style.display = 'none';
+                
+                // Estatística 2: Total de partidas (estimado baseado em scores > 0)
+                const activePlayers = sheetData.filter(user => user.Score > 0).length;
+                document.getElementById('totalGames').textContent = activePlayers;
+                document.getElementById('totalGames').className = 'stat-number loaded';
+                document.getElementById('gamesLoading').style.display = 'none';
+                
+                // Estatística 3: Jogadores "online" (usuários com atividade recente)
+                const onlineUsers = Math.floor(totalUsers * 0.3); // Estimativa: 30% dos usuários
+                document.getElementById('onlineUsers').textContent = onlineUsers;
+                document.getElementById('onlineUsers').className = 'stat-number loaded';
+                document.getElementById('onlineLoading').style.display = 'none';
+                
+                // Mostrar info do Google Sheets
+                document.getElementById('sheetsInfo').style.display = 'block';
+                
+                console.log('✅ Estatísticas atualizadas:', {
+                    totalUsers,
+                    activePlayers,
+                    onlineUsers
+                });
+                
+            } catch (error) {
+                console.error('❌ Erro ao carregar estatísticas:', error);
+                
+                // Fallback para dados locais em caso de erro
+                loadFallbackStats();
+            }
+        }
+
+        // Fallback para dados locais
+        function loadFallbackStats() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const totalUsers = users.length;
+            const activePlayers = users.filter(user => user.score > 0).length;
+            const onlineUsers = Math.floor(totalUsers * 0.2);
+            
+            document.getElementById('totalUsers').textContent = totalUsers || '0';
+            document.getElementById('totalGames').textContent = activePlayers || '0';
+            document.getElementById('onlineUsers').textContent = onlineUsers || '0';
+            
+            document.getElementById('totalUsers').className = 'stat-number loaded';
+            document.getElementById('totalGames').className = 'stat-number loaded';
+            document.getElementById('onlineUsers').className = 'stat-number loaded';
+            
+            document.getElementById('usersLoading').style.display = 'none';
+            document.getElementById('gamesLoading').style.display = 'none';
+            document.getElementById('onlineLoading').style.display = 'none';
+            
+            document.getElementById('sheetsInfo').innerHTML = `
+                <h4>💾 Dados Locais</h4>
+                <p>Usando dados armazenados localmente (Google Sheets offline)</p>
+            `;
+            document.getElementById('sheetsInfo').style.display = 'block';
+        }
+
+        // Quando a página carregar
+        window.addEventListener('load', () => {
+            console.log('Página carregada, inicializando...');
+            
+            // Atualizar UI baseada no usuário
+            updateUIForUser();
+            
+            // Carregar estatísticas REAIS
+            loadRealStats();
+            
+            // Aplicar tema salvo
+            if (typeof applySavedTheme === 'function') {
+                applySavedTheme();
+            } else {
+                console.log('applySavedTheme não disponível');
+            }
+            
+            // Configurar botão de tema
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    if (typeof toggleTheme === 'function') {
+                        toggleTheme();
+                    } else {
+                        console.log('toggleTheme não disponível');
+                        // Fallback básico
+                        document.body.classList.toggle('dark-theme');
+                        document.body.classList.toggle('light-theme');
+                    }
+                });
+            }
+            
+            // Inicializar Google Sheets
+            if (typeof initializeGoogleSheets === 'function') {
+                initializeGoogleSheets();
+            }
+            
+            console.log('✅ Index.html carregado corretamente');
+            console.log('👤 Usuário atual:', JSON.parse(localStorage.getItem('currentUser')));
+            console.log('🎨 Tema atual:', localStorage.getItem('theme'));
+        });
+
+        // Observar mudanças no localStorage para atualizar a UI em tempo real
+        window.addEventListener('storage', updateUIForUser);
+        
+        // Também atualizar quando houver mudanças via JavaScript (para a mesma aba)
+        const originalSetItem = localStorage.setItem;
+        localStorage.setItem = function(key, value) {
+            originalSetItem.apply(this, arguments);
+            if (key === 'currentUser') {
+                setTimeout(updateUIForUser, 100);
+            }
+        };
+    </script>
+
+    <style>
+        .feature-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stats-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .stats-section h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .stat-number.loaded {
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .stat-loading {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .sheets-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .sheets-info h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .sheets-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .menu-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .welcome-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .welcome-section > p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-section {
+                padding: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animações para os números */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-number.loaded {
+            animation: countUp 0.6s ease-out;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizGame - Criar Conta</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+                <h1>QuizGame</h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme">🌙 Modo Escuro</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="auth-section">
+            <div class="auth-form active">
+                <div class="section-header">
+                    <h2>📝 Criar sua conta</h2>
+                    <p>Sua conta será criada diretamente na planilha do Google</p>
+                </div>
+                
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="newUsername">👤 Nome de usuário:</label>
+                        <input type="text" id="newUsername" name="newUsername" required minlength="4" placeholder="Escolha um nome de usuário">
+                        <div id="newUsernameError" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newPassword">🔒 Senha:</label>
+                        <input type="password" id="newPassword" name="newPassword" required minlength="8" placeholder="Crie uma senha segura">
+                        <div class="password-requirements">
+                            <p>A senha deve conter:</p>
+                            <ul>
+                                <li id="reqLength">📏 Pelo menos 8 caracteres</li>
+                                <li id="reqLetters">🔤 Pelo menos 2 letras</li>
+                                <li id="reqNumbers">🔢 Pelo menos 2 números</li>
+                                <li id="reqSpecial">⭐ Pelo menos 1 caractere especial</li>
+                            </ul>
+                        </div>
+                        <div id="newPasswordError" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">🔒 Confirmar Senha:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Digite a senha novamente">
+                        <div id="confirmPasswordError" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-info">
+                        <p>⚠️Este é um projeto pessoal e armazenado numa panilha de meu domínio.</p>
+                        <p>Por favor evite usar dados pessoais como senhas de seu uso cotidiano e email.⚠️</p>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        📊 Criar Conta
+                    </button>
+                </form>
+                
+                <div class="auth-actions">
+                    <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+                    <button onclick="window.location.href='../index.html'" class="btn-secondary" style="width: 100%; margin-top: 1rem;">
+                        🏠 Voltar ao Início
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="../js/auth.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/google-sheets.js"></script>
+    <script>
+        // Verificar se já está logado
+        window.addEventListener('load', function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user) {
+                window.location.href = 'game.html';
+            }
+            
+            // Aplicar tema
+            if (typeof applySavedTheme === 'function') {
+                applySavedTheme();
+            }
+            
+            // Inicializar Google Sheets
+            if (typeof initializeGoogleSheets === 'function') {
+                initializeGoogleSheets();
+            }
+            
+            // Configurar botão mostrar senha
+            if (typeof setupPasswordToggle === 'function') {
+                setTimeout(() => {
+                    setupPasswordToggle();
+                }, 100);
+            }
+        });
+
+        // Validação de senha em tempo real
+        document.getElementById('newPassword').addEventListener('input', function() {
+            if (typeof validatePassword === 'function') {
+                validatePassword(this.value);
+            }
+        });
+
+        // Configurar formulário de registro
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Limpar mensagens de erro
+            document.getElementById('newUsernameError').textContent = '';
+            document.getElementById('newPasswordError').textContent = '';
+            document.getElementById('confirmPasswordError').textContent = '';
+            
+            // Verificar se as senhas coincidem
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'As senhas não coincidem';
+                showNotification('❌ As senhas não coincidem', 'error');
+                return;
+            }
+            
+            // Validar senha
+            if (typeof validatePassword === 'function') {
+                const passwordValidation = validatePassword(password);
+                if (!passwordValidation.valid) {
+                    document.getElementById('newPasswordError').textContent = passwordValidation.message;
+                    showNotification('❌ ' + passwordValidation.message, 'error');
+                    return;
+                }
+            }
+            
+            // Mostrar loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '⏳ Criando conta...';
+            submitBtn.disabled = true;
+            
+            // Registrar usuário
+            if (typeof registerUser === 'function') {
+                registerUser(username, password).then(result => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    if (result.success) {
+                        showNotification('✅ ' + result.message, 'success');
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 2000);
+                    } else {
+                        document.getElementById('newUsernameError').textContent = result.message;
+                        showNotification('❌ ' + result.message, 'error');
+                    }
+                });
+            } else {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                showNotification('❌ Erro: Função de registro não disponível', 'error');
+            }
+        });
+
+        // Função para mostrar notificação
+        function showNotification(message, type) {
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    </script>
+
+    <style>
+        .form-info {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .form-info p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .password-requirements {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 0.5rem;
+        }
+        
+        .password-requirements p {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .password-requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .password-requirements li {
+            padding: 2px 0;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+        
+        .password-requirements li.valid {
+            color: var(--success-color);
+        }
+        
+        .password-requirements li.invalid {
+            color: var(--error-color);
+        }
+    </style>
+</body>
+</html>

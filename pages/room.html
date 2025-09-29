@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizGame - Salas</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+                <h1>QuizGame - Salas</h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme">🌙 Modo Escuro</button>
+                <button onclick="logoutUser()" class="btn-logout">🚪 Sair</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="section-header">
+            <h2>👥 Salas Multiplayer</h2>
+            <p>Jogue com seus amigos em tempo real</p>
+        </div>
+        
+        <div class="room-actions">
+            <button onclick="createRoom()" class="btn-primary">➕ Criar Sala</button>
+            <button onclick="joinRoom()" class="btn-secondary">🔍 Entrar em Sala</button>
+            <button onclick="window.location.href='game.html'" class="btn-secondary">🎯 Jogar Sozinho</button>
+        </div>
+        
+        <div class="rooms-list" id="roomsList">
+            <div class="no-data">
+                <h3>🚧 Em Desenvolvimento</h3>
+                <p>O sistema de salas multiplayer estará disponível em breve!</p>
+                <p>Enquanto isso, aproveite o modo single player.</p>
+            </div>
+        </div>
+        
+        <div class="game-actions">
+            <button onclick="window.location.href='../index.html'" class="btn-secondary">🏠 Voltar ao Início</button>
+            <button onclick="window.location.href='ranking.html'" class="btn-secondary">🏆 Ver Ranking</button>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="../js/utils.js"></script>
+    <script>
+        function createRoom() {
+            alert('🎮 Criar Sala - Em breve disponível!');
+        }
+        
+        function joinRoom() {
+            alert('🔍 Entrar em Sala - Em breve disponível!');
+        }
+        
+        // Verificar autenticação
+        window.addEventListener('load', () => {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

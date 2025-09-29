@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Google Sheets - QuizGame</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <style>
+        .test-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .method-result {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        .method-success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .method-error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .test-actions {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <header>
+        <div class="logo">
+            <img src="../assets/logo-qg.png" alt="QuizGame Logo" class="logo-img">
+            <h1>QuizGame - Teste Planilha</h1>
+        </div>
+        <div class="theme-toggle">
+            <button id="themeToggle">Modo Escuro</button>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="test-section">
+            <h2>🧪 Teste de Conexão Google Sheets</h2>
+            
+            <div class="test-info">
+                <p>Este teste verifica a conexão com sua planilha do Google Sheets.</p>
+                <p><strong>Planilha ID:</strong> 1MgEerxewyHEtj8ie7ojSAaECYmwHru7Cl2b6PuN_dIM</p>
+            </div>
+
+            <div class="test-actions">
+                <button onclick="testAllMethods()" class="btn-primary">Testar Todos os Métodos</button>
+                <button onclick="testCSVMethod()" class="btn-secondary">Testar Método CSV</button>
+                <button onclick="testJSONMethod()" class="btn-secondary">Testar Método JSON</button>
+                <button onclick="window.location.href='../index.html'" class="btn-secondary">Voltar ao Início</button>
+            </div>
+            
+            <div id="results">
+                <!-- Resultados serão exibidos aqui -->
+            </div>
+
+            <div class="instructions">
+                <h3>📋 Instruções para Configurar a Planilha</h3>
+                <ol>
+                    <li>Acesse sua planilha no Google Sheets</li>
+                    <li>Configure os cabeçalhos na primeira linha:
+                        <pre>A1: "Use" | B1: "Password" | C1: "Score" | D1: "position"</pre>
+                    </li>
+                    <li>Adicione alguns dados de exemplo:
+                        <pre>A2: "João" | B2: "********" | C2: "150" | D2: "1"</pre>
+                    </li>
+                    <li>Torne a planilha pública:
+                        <ul>
+                            <li>Clique em <strong>"Compartilhar"</strong></li>
+                            <li>Mude para <strong>"Qualquer pessoa com o link"</strong></li>
+                            <li>Selecione <strong>"Visualizador"</strong></li>
+                            <li>Clique em <strong>"Concluído"</strong></li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 QuizGame. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../js/google-sheets.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+        async function testAllMethods() {
+            clearResults();
+            await testCSVMethod();
+            await testJSONMethod();
+            await testDirectConnection();
+        }
+
+        async function testCSVMethod() {
+            showResult('Método CSV (Principal)', '🔄 Testando...');
+            
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/1MgEerxewyHEtj8ie7ojSAaECYmwHru7Cl2b6PuN_dIM/export?format=csv`;
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                if (text.includes('</html>')) {
+                    showResult('Método CSV (Principal)', 
+                        '❌ ERRO: Planilha não está pública! Retornou página HTML.', 'error');
+                } else {
+                    const lines = text.split('\n').filter(line => line.trim() !== '');
+                    showResult('Método CSV (Principal)', 
+                        `✅ SUCESSO: ${lines.length} linhas encontradas\n\n📊 Preview:\n${text.substring(0, 500)}...`, 'success');
+                }
+            } catch (error) {
+                showResult('Método CSV (Principal)', `❌ ERRO: ${error.message}`, 'error');
+            }
+        }
+
+        async function testJSONMethod() {
+            showResult('Método JSON (Alternativo)', '🔄 Testando...');
+            
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/1MgEerxewyHEtj8ie7ojSAaECYmwHru7Cl2b6PuN_dIM/gviz/tq?tqx=out:json`;
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                if (text.includes('</html>')) {
+                    showResult('Método JSON (Alternativo)', 
+                        '❌ ERRO: Planilha não está pública!', 'error');
+                } else {
+                    const json = JSON.parse(text.substring(47).slice(0, -2));
+                    showResult('Método JSON (Alternativo)', 
+                        `✅ SUCESSO: Dados JSON recebidos\n\nEstrutura: ${JSON.stringify(json.table ? json.table.rows.length : 0)} linhas`, 'success');
+                }
+            } catch (error) {
+                showResult('Método JSON (Alternativo)', `❌ ERRO: ${error.message}`, 'error');
+            }
+        }
+
+        async function testDirectConnection() {
+            showResult('Teste Direto com Sistema', '🔄 Testando...');
+            
+            try {
+                const data = await fetchSheetData();
+                showResult('Teste Direto com Sistema', 
+                    `✅ SUCESSO: ${data.length} registros carregados\n\nDados: ${JSON.stringify(data, null, 2)}`, 'success');
+            } catch (error) {
+                showResult('Teste Direto com Sistema', `❌ ERRO: ${error.message}`, 'error');
+            }
+        }
+
+        function showResult(method, message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const className = type === 'success' ? 'method-success' : type === 'error' ? 'method-error' : 'method-result';
+            
+            resultsDiv.innerHTML += `
+                <div class="${className}">
+                    <h4>${method}</h4>
+                    <pre>${message}</pre>
+                </div>
+            `;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // Teste automático ao carregar
+        window.addEventListener('load', testAllMethods);
+    </script>
+</body>
+</html>

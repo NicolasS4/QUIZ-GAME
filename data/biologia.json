@@ -1,0 +1,167 @@
+[
+  {
+    "id": "bio0001",
+    "pergunta": "Qual organela é conhecida como a 'usina de energia' da célula?",
+    "opcao_1": "Núcleo",
+    "opcao_2": "Mitocôndria",
+    "opcao_3": "Complexo de Golgi",
+    "opcao_4": "Retículo endoplasmático",
+    "opcao_5": "Ribossomo",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "bio0002",
+    "pergunta": "Qual processo as plantas utilizam para produzir seu próprio alimento?",
+    "opcao_1": "Respiração",
+    "opcao_2": "Fotossíntese",
+    "opcao_3": "Digestão",
+    "opcao_4": "Fermentação",
+    "opcao_5": "Transpiração",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "bio0003",
+    "pergunta": "Quantos cromossomos existem em uma célula humana normal?",
+    "opcao_1": "23",
+    "opcao_2": "46",
+    "opcao_3": "48",
+    "opcao_4": "22",
+    "opcao_5": "44",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "bio0004",
+    "pergunta": "Qual é o maior órgão do corpo humano?",
+    "opcao_1": "Fígado",
+    "opcao_2": "Cérebro",
+    "opcao_3": "Pele",
+    "opcao_4": "Intestino",
+    "opcao_5": "Pulmão",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "bio0005",
+    "pergunta": "Qual grupo de animais é caracterizado por ter penas?",
+    "opcao_1": "Mamíferos",
+    "opcao_2": "Répteis",
+    "opcao_3": "Aves",
+    "opcao_4": "Anfíbios",
+    "opcao_5": "Peixes",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "bio0006",
+    "pergunta": "Qual é a função principal dos glóbulos vermelhos?",
+    "opcao_1": "Combater infecções",
+    "opcao_2": "Transportar oxigênio",
+    "opcao_3": "Coagular sangue",
+    "opcao_4": "Produzir anticorpos",
+    "opcao_5": "Transportar nutrientes",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "bio0007",
+    "pergunta": "Qual hormônio é responsável pelo controle do nível de glicose no sangue?",
+    "opcao_1": "Adrenalina",
+    "opcao_2": "Insulina",
+    "opcao_3": "Estrogênio",
+    "opcao_4": "Testosterona",
+    "opcao_5": "Tiroxina",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "bio0008",
+    "pergunta": "Qual processo envolve a divisão celular para produção de gametas?",
+    "opcao_1": "Mitose",
+    "opcao_2": "Meiose",
+    "opcao_3": "Clivagem",
+    "opcao_4": "Fissão",
+    "opcao_5": "Gemulação",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "bio0009",
+    "pergunta": "Qual é a unidade básica da hereditariedade?",
+    "opcao_1": "Cromossomo",
+    "opcao_2": "Gene",
+    "opcao_3": "DNA",
+    "opcao_4": "Proteína",
+    "opcao_5": "RNA",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "bio0010",
+    "pergunta": "Qual reino inclui organismos como leveduras e cogumelos?",
+    "opcao_1": "Animalia",
+    "opcao_2": "Plantae",
+    "opcao_3": "Fungi",
+    "opcao_4": "Protista",
+    "opcao_5": "Monera",
+    "resposta": "3",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "bio0011",
+    "pergunta": "Qual estrutura cerebral é responsável pelo equilíbrio e coordenação motora?",
+    "opcao_1": "Cérebro",
+    "opcao_2": "Cerebelo",
+    "opcao_3": "Tronco cerebral",
+    "opcao_4": "Hipotálamo",
+    "opcao_5": "Tálamo",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "bio0012",
+    "pergunta": "Qual processo descreve a evolução de espécies a partir de um ancestral comum?",
+    "opcao_1": "Especiação",
+    "opcao_2": "Mutação",
+    "opcao_3": "Seleção natural",
+    "opcao_4": "Adaptação",
+    "opcao_5": "Variação",
+    "resposta": "1",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "bio0013",
+    "pergunta": "Qual ciclo biogeoquímico envolve a fixação do nitrogênio atmosférico?",
+    "opcao_1": "Ciclo do carbono",
+    "opcao_2": "Ciclo da água",
+    "opcao_3": "Ciclo do nitrogênio",
+    "opcao_4": "Ciclo do fósforo",
+    "opcao_5": "Ciclo do oxigênio",
+    "resposta": "3",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "bio0014",
+    "pergunta": "Qual tecido vegetal é responsável pelo transporte de seiva elaborada?",
+    "opcao_1": "Xilema",
+    "opcao_2": "Floema",
+    "opcao_3": "Epiderme",
+    "opcao_4": "Parênquima",
+    "opcao_5": "Colênquima",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "bio0015",
+    "pergunta": "Qual conceito ecológico descreve a relação entre presa e predador?",
+    "opcao_1": "Competição",
+    "opcao_2": "Predação",
+    "opcao_3": "Mutualismo",
+    "opcao_4": "Comensalismo",
+    "opcao_5": "Parasitismo",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  }
+]

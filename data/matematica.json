@@ -1,0 +1,167 @@
+[
+  {
+    "id": "mat0001",
+    "pergunta": "Qual é o resultado de 7 x 8?",
+    "opcao_1": "54",
+    "opcao_2": "56",
+    "opcao_3": "58",
+    "opcao_4": "60",
+    "opcao_5": "64",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "mat0002",
+    "pergunta": "Quanto é 15% de 200?",
+    "opcao_1": "20",
+    "opcao_2": "25",
+    "opcao_3": "30",
+    "opcao_4": "35",
+    "opcao_5": "40",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "mat0003",
+    "pergunta": "Qual é a raiz quadrada de 144?",
+    "opcao_1": "10",
+    "opcao_2": "11",
+    "opcao_3": "12",
+    "opcao_4": "13",
+    "opcao_5": "14",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "mat0004",
+    "pergunta": "Qual é o valor de π (pi) aproximadamente?",
+    "opcao_1": "2,14",
+    "opcao_2": "3,14",
+    "opcao_3": "4,14",
+    "opcao_4": "3,16",
+    "opcao_5": "3,18",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "mat0005",
+    "pergunta": "Quantos graus tem um ângulo reto?",
+    "opcao_1": "45°",
+    "opcao_2": "90°",
+    "opcao_3": "180°",
+    "opcao_4": "270°",
+    "opcao_5": "360°",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "mat0006",
+    "pergunta": "Qual é a fórmula da área de um triângulo?",
+    "opcao_1": "base x altura",
+    "opcao_2": "(base x altura)/2",
+    "opcao_3": "lado²",
+    "opcao_4": "π x raio²",
+    "opcao_5": "2πr",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "mat0007",
+    "pergunta": "Qual é o resultado de 5² + 3³?",
+    "opcao_1": "28",
+    "opcao_2": "32",
+    "opcao_3": "34",
+    "opcao_4": "36",
+    "opcao_5": "38",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "mat0008",
+    "pergunta": "Qual é o MMC (Mínimo Múltiplo Comum) de 6 e 8?",
+    "opcao_1": "12",
+    "opcao_2": "16",
+    "opcao_3": "24",
+    "opcao_4": "32",
+    "opcao_5": "48",
+    "resposta": "3",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "mat0009",
+    "pergunta": "Qual é a fórmula de Bhaskara?",
+    "opcao_1": "x = -b ± √(b² - 4ac)/2",
+    "opcao_2": "x = -b ± √(b² - 4ac)/2a",
+    "opcao_3": "x = b ± √(b² - 4ac)/2a",
+    "opcao_4": "x = -b ± √(b² + 4ac)/2a",
+    "opcao_5": "x = b ± √(b² + 4ac)/2a",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "mat0010",
+    "pergunta": "Qual é o valor de sen(90°)?",
+    "opcao_1": "0",
+    "opcao_2": "0,5",
+    "opcao_3": "1",
+    "opcao_4": "√2/2",
+    "opcao_5": "√3/2",
+    "resposta": "3",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "mat0011",
+    "pergunta": "Qual é a derivada de x³?",
+    "opcao_1": "x²",
+    "opcao_2": "2x²",
+    "opcao_3": "3x²",
+    "opcao_4": "3x",
+    "opcao_5": "x³",
+    "resposta": "3",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "mat0012",
+    "pergunta": "Qual é a integral de 2x dx?",
+    "opcao_1": "x²",
+    "opcao_2": "x² + C",
+    "opcao_3": "2x²",
+    "opcao_4": "2x² + C",
+    "opcao_5": "x",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "mat0013",
+    "pergunta": "Qual é o logaritmo de 100 na base 10?",
+    "opcao_1": "1",
+    "opcao_2": "2",
+    "opcao_3": "10",
+    "opcao_4": "100",
+    "opcao_5": "0",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "mat0014",
+    "pergunta": "Qual é o valor do número de Euler (e) aproximadamente?",
+    "opcao_1": "2,71",
+    "opcao_2": "3,14",
+    "opcao_3": "1,41",
+    "opcao_4": "1,61",
+    "opcao_5": "2,50",
+    "resposta": "1",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "mat0015",
+    "pergunta": "Qual é a fórmula do volume de uma esfera?",
+    "opcao_1": "4/3 πr²",
+    "opcao_2": "4/3 πr³",
+    "opcao_3": "πr²h",
+    "opcao_4": "2πr",
+    "opcao_5": "πr³",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  }
+]

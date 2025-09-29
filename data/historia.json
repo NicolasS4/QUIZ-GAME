@@ -1,0 +1,167 @@
+[
+  {
+    "id": "his0001",
+    "pergunta": "Em que ano o Brasil foi descoberto pelos portugueses?",
+    "opcao_1": "1492",
+    "opcao_2": "1500",
+    "opcao_3": "1520",
+    "opcao_4": "1450",
+    "opcao_5": "1550",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "his0002",
+    "pergunta": "Quem foi o primeiro presidente do Brasil?",
+    "opcao_1": "Getúlio Vargas",
+    "opcao_2": "Deodoro da Fonseca",
+    "opcao_3": "Juscelino Kubitschek",
+    "opcao_4": "Prudente de Morais",
+    "opcao_5": "Campos Sales",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "his0003",
+    "pergunta": "Qual foi o período da Inconfidência Mineira?",
+    "opcao_1": "Século XVII",
+    "opcao_2": "Século XVIII",
+    "opcao_3": "Século XIX",
+    "opcao_4": "Século XVI",
+    "opcao_5": "Século XX",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "his0004",
+    "pergunta": "Quem proclamou a Independência do Brasil?",
+    "opcao_1": "José Bonifácio",
+    "opcao_2": "Dom Pedro I",
+    "opcao_3": "Dom João VI",
+    "opcao_4": "Tiradentes",
+    "opcao_5": "Marquês de Pombal",
+    "resposta": "2",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "his0005",
+    "pergunta": "Qual civilização construiu as pirâmides do Egito?",
+    "opcao_1": "Gregos",
+    "opcao_2": "Romanos",
+    "opcao_3": "Egípcios",
+    "opcao_4": "Maias",
+    "opcao_5": "Astecas",
+    "resposta": "3",
+    "dificuldade": "facil"
+  },
+  {
+    "id": "his0006",
+    "pergunta": "Em que século ocorreu a Primeira Guerra Mundial?",
+    "opcao_1": "Século XIX",
+    "opcao_2": "Século XX",
+    "opcao_3": "Século XVIII",
+    "opcao_4": "Século XVII",
+    "opcao_5": "Século XXI",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "his0007",
+    "pergunta": "Qual foi o principal líder da Revolução Russa de 1917?",
+    "opcao_1": "Joseph Stalin",
+    "opcao_2": "Vladimir Lenin",
+    "opcao_3": "Leon Trotsky",
+    "opcao_4": "Karl Marx",
+    "opcao_5": "Mikhail Gorbachev",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "his0008",
+    "pergunta": "Qual império era conhecido como 'o império onde o sol nunca se põe'?",
+    "opcao_1": "Império Romano",
+    "opcao_2": "Império Britânico",
+    "opcao_3": "Império Otomano",
+    "opcao_4": "Império Mongol",
+    "opcao_5": "Império Espanhol",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "his0009",
+    "pergunta": "Quem foi o principal autor da Declaração de Independência dos EUA?",
+    "opcao_1": "George Washington",
+    "opcao_2": "Thomas Jefferson",
+    "opcao_3": "Benjamin Franklin",
+    "opcao_4": "John Adams",
+    "opcao_5": "Abraham Lincoln",
+    "resposta": "2",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "his0010",
+    "pergunta": "Qual foi o período da Guerra Fria?",
+    "opcao_1": "1914-1918",
+    "opcao_2": "1939-1945",
+    "opcao_3": "1947-1991",
+    "opcao_4": "1950-1953",
+    "opcao_5": "1960-1980",
+    "resposta": "3",
+    "dificuldade": "medio"
+  },
+  {
+    "id": "his0011",
+    "pergunta": "Qual civilização desenvolveu a escrita cuneiforme?",
+    "opcao_1": "Egípcios",
+    "opcao_2": "Gregos",
+    "opcao_3": "Sumérios",
+    "opcao_4": "Romanos",
+    "opcao_5": "Fenícios",
+    "resposta": "3",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "his0012",
+    "pergunta": "Quem foi o principal teórico do socialismo científico?",
+    "opcao_1": "Adam Smith",
+    "opcao_2": "Karl Marx",
+    "opcao_3": "Vladimir Lenin",
+    "opcao_4": "Friedrich Engels",
+    "opcao_5": "Mao Tsé-Tung",
+    "resposta": "2",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "his0013",
+    "pergunta": "Qual batalha marcou o fim das Guerras Napoleônicas?",
+    "opcao_1": "Waterloo",
+    "opcao_2": "Austerlitz",
+    "opcao_3": "Borodino",
+    "opcao_4": "Trafalgar",
+    "opcao_5": "Leipzig",
+    "resposta": "1",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "his0014",
+    "pergunta": "Qual dinastia governou a Rússia até a Revolução de 1917?",
+    "opcao_1": "Romanov",
+    "opcao_2": "Habsburgo",
+    "opcao_3": "Bourbon",
+    "opcao_4": "Tudor",
+    "opcao_5": "Valois",
+    "resposta": "1",
+    "dificuldade": "dificil"
+  },
+  {
+    "id": "his0015",
+    "pergunta": "Qual foi o principal acordo que encerrou a Primeira Guerra Mundial?",
+    "opcao_1": "Tratado de Versalhes",
+    "opcao_2": "Tratado de Tordesilhas",
+    "opcao_3": "Pacto de Varsóvia",
+    "opcao_4": "Concordata de Worms",
+    "opcao_5": "Paz de Westfália",
+    "resposta": "1",
+    "dificuldade": "dificil"
+  }
+]
